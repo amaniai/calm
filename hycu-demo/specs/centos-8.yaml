@@ -8,8 +8,8 @@ resources:
   disk_list:
   - data_source_reference:
       kind: image
-      name: CentOS-8
-      uuid: 3d9367d4-e2f6-426a-9003-e36facdf853a
+      name: Centos_76
+      uuid: 86005b91-b1f9-4ed7-b1d5-029013e4599d
     device_properties:
       device_type: DISK
       disk_address:
@@ -39,5 +39,5 @@ resources:
     nic_type: NORMAL_NIC
     subnet_reference:
       kind: subnet
-      name: Default
-      uuid: 943cc2ac-dace-41c1-809b-a4eedc8e6090
+      name: Network-02
+      uuid: fa8b4999-6b07-4893-a435-2e1b578133dc
