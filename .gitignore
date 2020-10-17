@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# additional exclusion
+.idea/
+calm-dsl/
+.local/
+.bash_history
