@@ -5,7 +5,7 @@ from calm.dsl.builtins import Blueprint
 from calm.dsl.cli.bps import compile_blueprint, create_blueprint
 from calm.dsl.api.handle import get_api_client
 
-from vars import ARISTA_CRED
+from vars import ARISTA_CRED, PC_CRED
 from services import Arista
 from packages import AristaPackage
 from substrates import AristaSubstrate
@@ -18,7 +18,7 @@ class MultiTenantNetwork(Blueprint):
     services = [Arista]
     substrates = [AristaSubstrate]
     packages = [AristaPackage]
-    credentials = [ARISTA_CRED]
+    credentials = [ARISTA_CRED, PC_CRED]
 
 
 def main():

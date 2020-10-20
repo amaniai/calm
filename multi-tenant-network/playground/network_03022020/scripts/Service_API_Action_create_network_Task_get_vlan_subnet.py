@@ -1,0 +1,6 @@
+PRINT('NETWORK={}'.format('192.168.101.0/24')
+PRINT('GATEWAY={}'.format('192.168.101.1')
+PRINT('POOL_START={}'.format('192.168.101.11'))
+PRINT('POOL_END={}'.format('192.168.101.200'))
+PRINT('VLAN={}'.format('234'))
+PRINT('MASK={}'.format('24'))
