@@ -4,8 +4,8 @@ from calm.dsl.builtins import read_provider_spec
 from calm.dsl.builtins import CalmVariable
 from calm.dsl.store import Secret
 
-CENTOS = basic_cred('centos', 'nutanix/4u', name='CENTOS', default=True)
-HYCU = basic_cred('admin', 'admin', name='HYCU', default=False)
+CENTOS = basic_cred('nutanix', 'nutanix/4u', name='CENTOS', default=True)
+HYCU_CRED = basic_cred('admin', 'admin', name='HYCU_CRED', default=False)
 
 class CentosDeployment(SimpleDeployment):
     provider_spec = read_provider_spec('specs/centos-8.yaml')
@@ -22,12 +22,14 @@ class CentosDeployment(SimpleDeployment):
 
 
 class HYCUCentOS8(SimpleBlueprint):
-    credentials = [CENTOS, HYCU]
+    credentials = [CENTOS, HYCU_CRED]
     deployments = [CentosDeployment]
     VM_NAME = CalmVariable.Simple.string('CentOS-VM', label='VM Name', runtime=True)
     
     # HYCU IP address, assuming default port for API access (8443)
-    HYCU_IP = CalmVariable.Simple.string("10.38.4.21", runtime=False, is_hidden=True)
+    HYCU_IP = CalmVariable.Simple.string('10.21.21.100', runtime=False, is_hidden=True)
+    HYCU_PORT = CalmVariable.Simple.string('8443', runtime=False, is_hidden=True)
+
 
 def main():
     print(HYCUCentOS8.json_dumps(pprint=True))
