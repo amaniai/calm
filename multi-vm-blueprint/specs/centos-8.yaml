@@ -1,0 +1,43 @@
+name: "@@{VM_NAME}@@"
+resources:
+  boot_config:
+    boot_device:
+      disk_address:
+        adapter_type: SCSI
+        device_index: 0
+  disk_list:
+  - data_source_reference:
+      kind: image
+      name: Centos_76
+      uuid: 86005b91-b1f9-4ed7-b1d5-029013e4599d
+    device_properties:
+      device_type: DISK
+      disk_address:
+        adapter_type: SCSI
+        device_index: 0
+    disk_size_mib: 0
+  guest_customization:
+    cloud_init:
+      user_data: |-
+        #cloud-config
+        ssh_pwauth: True
+        users: 
+          - name: @@{CENTOS.username}@@
+            groups: "users,wheel"
+            sudo: ['ALL=(ALL) NOPASSWD:ALL']
+        chpasswd: 
+          expire: False
+          list: |
+            root:@@{CENTOS.secret}@@
+            @@{CENTOS.username}@@:@@{CENTOS.secret}@@
+
+  memory_size_mib: 4096
+  num_sockets: 1
+  num_vcpus_per_socket: 1
+  nic_list:
+  - network_function_nic_type: INGRESS
+    nic_type: NORMAL_NIC
+    subnet_reference:
+      kind: subnet
+      name: Network-02
+      uuid: fa8b4999-6b07-4893-a435-2e1b578133dc
