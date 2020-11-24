@@ -3,14 +3,14 @@ import requests
 # -------------- Test Environment ------------------
 # import urllib3
 # urllib3.disable_warnings()
-# project_name = 'default'
+# project_name = 'test'
 # authorization = 'Basic YWRtaW46bngyVGVjaDkxMSE='
 # url = 'https://10.38.2.9:9440/api/nutanix/v3/{}'
-# vcpu = 0
-# memory = 2
-# disk_size = 300
+# vcpu = 1
+# memory = 4
+# disk_size = 100
 # index = 0
-# count = 5
+# count = 2
 
 # -------------- Calm Environment ------------------
 project_name = '@@{calm_project_name}@@'
@@ -75,16 +75,18 @@ resp = requests.post(url.format('groups'), json=payload, **kwargs)
 project_usage = {'vcpus': 0, 'memory': 0, 'storage': 0}
 
 if resp.status_code == 200:
-    reuslt = resp.json()['group_results'][0].get('entity_results', [])
-    for resource in reuslt:
-        remapped = {}
-        for item in resource.get('data'):
-            if item['values']:
-                remapped[item['name']] = item['values'][0]['values'][0]
+    if resp.json().get('filtered_entity_count'):
+        result = resp.json()['group_results'][0].get('entity_results', [])
+        print(resp.json())
+        for resource in result:
+            remapped = {}
+            for item in resource.get('data'):
+                if item['values']:
+                    remapped[item['name']] = item['values'][0]['values'][0]
 
-        project_usage['vcpus'] += int(remapped.get('num_vcpus', 0))
-        project_usage['memory'] += int(remapped.get('memory_size_bytes', 0))
-        project_usage['storage'] += int(remapped.get('capacity_bytes', 0))
+            project_usage['vcpus'] += int(remapped.get('num_vcpus', 0))
+            project_usage['memory'] += int(remapped.get('memory_size_bytes', 0))
+            project_usage['storage'] += int(remapped.get('capacity_bytes', 0))
 
     print('INFO - Limits: {}'.format(project_limits))
     print('INFO - Usage: {}'.format(project_usage))
