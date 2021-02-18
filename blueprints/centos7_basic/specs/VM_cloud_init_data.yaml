@@ -1,0 +1,10 @@
+#cloud-config
+ssh_pwauth: True
+chpasswd:
+  list: |
+     @@{CENTOS.username}@@:@@{CENTOS.secret}@@
+  expire: False
+users:
+  - name: @@{CENTOS.username}@@
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    shell: /bin/bash
