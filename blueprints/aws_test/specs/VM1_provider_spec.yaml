@@ -1,0 +1,36 @@
+availability_zone_reference: null
+backup_policy: null
+cluster_reference: null
+name: vm-@@{calm_array_index}@@-@@{calm_time}@@
+resources:
+  account_uuid: 7531173b-d0eb-4e53-7300-f8523e307467
+  associate_public_ip_address: true
+  availability_zone: us-west-2b
+  block_device_map:
+    data_disk_list: []
+    root_disk:
+      delete_on_termination: true
+      device_name: /dev/sda1
+      iops: 100
+      size_gb: 8
+      snapshot_id: ''
+      type: ''
+      volume_type: GP2
+    type: ''
+  image_id: ami-0cf1ef0f7d7421ea7
+  instance_initiated_shutdown_behavior: ''
+  instance_profile_name: ''
+  instance_type: t2.nano
+  key_name: calm-demo
+  private_ip_address: ''
+  region: us-west-2
+  security_group_list:
+  - security_group_id: sg-03a2d909d97d861cb
+    type: ''
+  state: RUNNING
+  subnet_id: subnet-0f5b3fee7a377ea74
+  tag_list: []
+  type: ''
+  user_data: ''
+  vpc_id: vpc-09061cc99567ec99b
+type: PROVISION_AWS_VM
