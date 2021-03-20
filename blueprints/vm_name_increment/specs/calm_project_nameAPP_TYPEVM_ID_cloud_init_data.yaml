@@ -1,0 +1,17 @@
+|-
+#cloud-config
+ssh_pwauth: True
+chpasswd:
+  list: |
+     @@{CENTOS.username}@@:@@{CENTOS.secret}@@
+     @@{USERNAME}@@:@@{PASSWORD}@@
+  expire: False
+users:
+  - name: centos
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: wheel
+  - name: @@{USERNAME}@@
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: wheel
