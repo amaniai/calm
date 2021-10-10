@@ -133,3 +133,5 @@ dmypy.json
 calm-dsl/
 .local/
 .bash_history
+.DS_Store
+

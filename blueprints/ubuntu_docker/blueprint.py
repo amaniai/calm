@@ -54,7 +54,7 @@ class VMResources(AhvVmResources):
         AhvVmDisk.Disk.Scsi.cloneFromVMDiskPackage(ubuntu_20_04_cloud, bootable=True)
     ]
     nics = [
-        AhvVmNic.NormalNic.ingress("NET-01", cluster="PHX-SPOC017-2")
+        AhvVmNic.NormalNic.ingress("Net-DevOps", cluster="Middle-East-Lab-cluster2")
     ]
 
     guest_customization = AhvVmGC.CloudInit(

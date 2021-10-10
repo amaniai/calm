@@ -47,14 +47,14 @@ class Ubuntu(Service):
 
 class VMResources(AhvVmResources):
 
-    memory = 1
+    memory = 4
     vCPUs = 1
     cores_per_vCPU = 1
     disks = [
         AhvVmDisk.Disk.Scsi.cloneFromVMDiskPackage(ubuntu_20_04_cloud, bootable=True)
     ]
     nics = [
-        AhvVmNic.NormalNic.ingress("Network-02", cluster="Middle-East-Lab-cluster2")
+        AhvVmNic.NormalNic.ingress("PUBLIC", cluster="DC-RUH")
     ]
 
     guest_customization = AhvVmGC.CloudInit(
